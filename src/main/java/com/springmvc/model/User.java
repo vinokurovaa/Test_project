@@ -104,4 +104,12 @@ public class User implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public Set<Role> getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(Set<Role> userRole) {
+        this.userRole = userRole;
+    }
 }
