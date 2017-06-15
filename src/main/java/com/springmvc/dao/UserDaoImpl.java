@@ -6,12 +6,11 @@ import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * Created by Asus on 15.06.2017.
- */
+@Repository("userDao")
 public class UserDaoImpl extends AbstractDao<Integer,User> implements UserDao {
     static final org.apache.log4j.Logger logger = Logger.getLogger(UserDaoImpl.class);
 
