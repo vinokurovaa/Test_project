@@ -4,9 +4,7 @@ import com.springmvc.model.User;
 
 import java.util.List;
 
-/**
- * Created by Asus on 14.06.2017.
- */
+
 public interface UserService {
     User findById(int id);
     User findBySSO(String sso);
