@@ -37,7 +37,7 @@
                     <spring:message code="lable.language"/> : <a href="?MyLocale=en"> <img src="${pageContext.request.contextPath}/img/en.png"/> </a> | <a href="?MyLocale=de"><img src="${pageContext.request.contextPath}/img/de.png"></a>
                     <div class="input-group input-sm">
                         <label class="input-group-addon" for="username"><i class="fa fa-user"></i></label>
-                        <input type="text" class="form-control" id="username" name="ssoId" placeholder="<spring:message code="lable.enterUserName" />" required>
+                        <input type="text" class="form-control" id="username" name="ssoId" placeholder="<spring:message code="lable.enterUserName" />" required oninvalid="this.setCustomValidity('<spring:message code="lable.validationMassageRequired"/>')" oninput="this.setCustomValidity('')">
                     </div>
                     <div class="input-group input-sm">
                         <label class="input-group-addon" for="password"><i class="fa fa-lock"></i></label>
