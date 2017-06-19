@@ -1,10 +1,13 @@
 package com.springmvc.configuration;
 
+import com.springmvc.converter.RoleToRoleServiceConverter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
@@ -21,8 +24,8 @@ import java.util.Locale;
 public class AppConfig extends WebMvcConfigurerAdapter{
 
 
-  //  @Autowired
- //   RoleToUserProfileConverter roleToUserProfileConverter;
+    @Autowired
+    RoleToRoleServiceConverter roleToRoleServiceConverter;
 
 
     /**
@@ -45,16 +48,17 @@ public class AppConfig extends WebMvcConfigurerAdapter{
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("/static/");
+        registry.addResourceHandler("/img/**").addResourceLocations("/img/");
     }
 
     /**
      * Configure Converter to be used.
      * In our example, we need a converter to convert string values[Role] to UserProfiles in newUser.jsp
      */
-   /* @Override
+    @Override
     public void addFormatters(FormatterRegistry registry) {
-        registry.addConverter(roleToUserProfileConverter);
-    }*/
+        registry.addConverter(roleToRoleServiceConverter);
+    }
 
 
     /**

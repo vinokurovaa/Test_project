@@ -1,4 +1,4 @@
-/*package com.springmvc.Security;
+package com.springmvc.Security;
 
 import com.springmvc.model.Role;
 import com.springmvc.model.User;
@@ -46,4 +46,3 @@ public class CustomUserDetailsService implements UserDetailsService {
         return authorities;
     }
 }
-*/
