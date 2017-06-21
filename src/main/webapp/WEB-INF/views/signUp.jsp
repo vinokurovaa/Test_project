@@ -71,7 +71,9 @@
                                         <span class="help-block">Your password is always used to log in.</span>
                                     </div>
                                     <div class="col-md-7">
-                                        <form:select path="userRole" items="${roles}" multiple="true" itemValue="id" itemLabel="role" class="form-control input-sm" />
+                                        <label for="userRole">Role</label>
+                                        <form:select path="userRole" items="${roles}" multiple="false" itemValue="id" itemLabel="role" class="form-control input-sm" />
+                                        <span class="help-block">Please select your role.</span>
                                     </div>
                                 </div>
                             </div>
