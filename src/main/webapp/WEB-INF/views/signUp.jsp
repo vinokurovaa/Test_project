@@ -14,7 +14,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <spring:url value="/test" var="url"></spring:url>
+
+
+    <spring:url value="/signUp" var="url"></spring:url>
 </head>
 <body>
 <nav class="navbar navbar-default navbar-inverse" role="navigation" >
@@ -22,10 +24,10 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-left">
                 <li>
-                    <a href="?MyLocale=en"> <img src="${pageContext.request.contextPath}/img/en.png"/> </a>
+                    <a href="?locale=en"> <img src="${pageContext.request.contextPath}/img/en.png"/> </a>
                 </li>
                 <li>
-                    <a href="?MyLocale=de"> <img src="${pageContext.request.contextPath}/img/de.png"/> </a>
+                    <a href="?locale=de"> <img src="${pageContext.request.contextPath}/img/de.png"/> </a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -43,7 +45,7 @@
                                 <div class="form-group">
                                     <label for="email">Email Address</label>
                                     <input type="text" class="form-control" required="" name="email" value="">
-                                    <span class="help-block">Your email address is also used to log in.</span>
+                                    <span class="help-block">Your email address is  used to log in.</span>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6" id="firstName">
@@ -57,7 +59,22 @@
                                         <span class="help-block">Your last name.</span>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-6" id="login">
+                                        <label for="login">Login</label>
+                                        <input type="text" class="form-control" required="" name="login" value="">
+                                        <span class="help-block">Your login is also used to log in.</span>
+                                    </div>
+                                    <div class="col-md-6" id="password">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" required="" name="password" value="">
+                                        <span class="help-block">Your password is always used to log in.</span>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <form:select path="userRole" items="${roles}" multiple="true" itemValue="id" itemLabel="role" class="form-control input-sm" />
+                                    </div>
                                 </div>
+                            </div>
                                 <div class="form-actions">
                                     <input type="hidden" name="isEmpty" value="">
                                     <button type="input" name="submit" value="newAccount" class="btn btn-success btn-icon"><i class="fa fa-check"></i> Create My Account</button>
