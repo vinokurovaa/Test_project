@@ -7,6 +7,7 @@ import com.springmvc.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,6 +36,18 @@ public class SignUpController {
 
     @RequestMapping(value = {"/signUp"}, method = RequestMethod.POST, params = {"email","firstName", "lastName"})
     public ModelAndView setPassword(@ModelAttribute("newUser") User newUser, Locale locate, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            return new ModelAndView("signUp");
+        }
+        if(userService.isUserEmailUnique(newUser.getEmail())){
+            newUser.setSsoId(newUser.getEmail());
+            userService.saveUser(newUser);
+        }else {
+            FieldError emailError = new FieldError("user", "email", "Email already exist. Please fill in different value");
+            bindingResult.addError(emailError);
+            return new ModelAndView("signUp");
+
+        }
         return new ModelAndView("test1");
     }
     @ModelAttribute("roles")

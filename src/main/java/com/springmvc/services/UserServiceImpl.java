@@ -2,6 +2,7 @@ package com.springmvc.services;
 
 import com.springmvc.dao.UserDao;
 import com.springmvc.model.User;
+import org.hibernate.validator.constraints.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +22,9 @@ public class UserServiceImpl implements UserService {
 
     public User findBySSO(String sso) {
         return dao.findBySSO(sso);
+    }
+    public User findUserByEmail(String email){
+        return  dao.findUserByEmail(email);
     }
 
     public void saveUser(User user) {
@@ -51,5 +55,12 @@ public class UserServiceImpl implements UserService {
     public boolean isUserSSOUnique(Integer id, String sso) {
         User entity = dao.findBySSO(sso);
         return (entity == null || ((id!=null) && (entity.getId()==id)));
+    }
+    public boolean isUserEmailUnique(String email){
+        User user = dao.findUserByEmail(email);
+        if(user==null){
+            return true;
+        }
+        return false;
     }
 }

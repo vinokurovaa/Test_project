@@ -16,7 +16,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-    <spring:url value="/signUp" var="url"></spring:url>
+    <spring:url value="/signUp" var="signUp"></spring:url>
+    <spring:url value="/signIn" var="signIn"></spring:url>
 </head>
 <body>
 <nav class="navbar navbar-default navbar-inverse" role="navigation" >
@@ -36,7 +37,7 @@
                 <div class="modal fade" id="signUpModal" role="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                           <form:form action="${url}" method="post" modelAttribute="newUser" >
+                           <form:form action="${signUp}" method="post" modelAttribute="newUser" >
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
                                 <h4 class="modal-title">Ready to Join? Create a New Account</h4>
@@ -99,14 +100,14 @@
                                         <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
                                     </div>
                                     or
-                                    <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-                                        <div class="form-group">
-                                            <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+                                    <form:form class="form" role="form" method="post" action="${signIn}"  modelAttribute="user" accept-charset="UTF-8" id="login-nav">
+                                        <div class="form-group" id="email">
+                                            <label class="sr-only" for="email">Email address</label>
+                                            <input type="email" class="form-control" name="email" placeholder="Email address" required>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                                        <div class="form-group" id="password">
+                                            <label class="sr-only" for="password">Password</label>
+                                            <input type="password" class="form-control" name="password" placeholder="Password" required>
                                             <div class="help-block text-right"><a href="">Forget the password ?</a></div>
                                         </div>
                                         <div class="form-group">
@@ -117,7 +118,7 @@
                                                 <input type="checkbox"> keep me logged-in
                                             </label>
                                         </div>
-                                    </form>
+                                    </form:form>
                                 </div>
                                 <div class="bottom text-center">
                                     New here ? <a href="#"><b>Join Us</b></a>
