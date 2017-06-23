@@ -2,6 +2,7 @@ package com.springmvc.Controllers;
 
 import com.springmvc.model.Role;
 import com.springmvc.model.User;
+import com.springmvc.services.MailService;
 import com.springmvc.services.RoleService;
 import com.springmvc.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class SignUpController {
     @Autowired
     RoleService roleService;
 
+    @Autowired
+    MailService mailService;
+
     @RequestMapping(value = {"/signUp"}, method = RequestMethod.GET)
     public ModelAndView regis(Locale locale, Map<String, Object> mv) {
         User user = new User();
@@ -42,6 +46,7 @@ public class SignUpController {
         if(userService.isUserEmailUnique(newUser.getEmail())){
             newUser.setSsoId(newUser.getEmail());
             userService.saveUser(newUser);
+            mailService.sendEmail(newUser);
         }else {
             FieldError emailError = new FieldError("user", "email", "Email already exist. Please fill in different value");
             bindingResult.addError(emailError);
