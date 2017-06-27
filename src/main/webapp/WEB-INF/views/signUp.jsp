@@ -110,12 +110,13 @@
                                             <input type="password" class="form-control" name="password" placeholder="Password" required>
                                             <div class="help-block text-right"><a href="">Forget the password ?</a></div>
                                         </div>
+                                        <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary btn-block">Sign in</button>
                                         </div>
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox"> keep me logged-in
+                                                <input type="checkbox" name="remember-me"> keep me logged-in
                                             </label>
                                         </div>
                                     </form:form>

@@ -6,6 +6,8 @@ import com.springmvc.services.MailService;
 import com.springmvc.services.RoleService;
 import com.springmvc.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -35,6 +37,7 @@ public class SignUpController {
     public ModelAndView regis(Locale locale, Map<String, Object> mv) {
         User user = new User();
         mv.put("newUser", user);
+        mv.put("loggedinuser", getPrincipal());
         return new ModelAndView("signUp", mv);
     }
 
@@ -53,8 +56,20 @@ public class SignUpController {
             return new ModelAndView("signUp");
 
         }
-        return new ModelAndView("test1");
+        return new ModelAndView("registrationsuccess");
     }
+    private String getPrincipal(){
+        String userName = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails)principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+        return userName;
+    }
+
     @ModelAttribute("roles")
     public List<Role> initializeProfiles() {
         return roleService.findAll();
