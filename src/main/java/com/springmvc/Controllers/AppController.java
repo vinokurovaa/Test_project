@@ -57,7 +57,7 @@ public class AppController {
      * This method will list all existing users.
      */
     @RequestMapping(value = { "/", "/list" }, method = RequestMethod.GET)
-    public String listUsers(ModelMap model) {
+    public String listUsers(ModelMap model, Locale locale) {
 
         List<User> users = userService.findAllUsers();
         model.addAttribute("users", users);
@@ -69,7 +69,7 @@ public class AppController {
      * This method will provide the medium to add a new user.
      */
     @RequestMapping(value = { "/newuser" }, method = RequestMethod.GET)
-    public String newUser(ModelMap model) {
+    public String newUser(ModelMap model, Locale locale) {
         User user = new User();
         model.addAttribute("user", user);
         model.addAttribute("edit", false);
@@ -83,7 +83,7 @@ public class AppController {
      */
     @RequestMapping(value = { "/newuser" }, method = RequestMethod.POST)
     public String saveUser(@Valid User user, BindingResult result,
-                           ModelMap model) {
+                           ModelMap model, Locale locale) {
 
         if (result.hasErrors()) {
             return "registration";
@@ -116,7 +116,7 @@ public class AppController {
      * This method will provide the medium to update an existing user.
      */
     @RequestMapping(value = { "/edit-user-{ssoId}" }, method = RequestMethod.GET)
-    public String editUser(@PathVariable String ssoId, ModelMap model) {
+    public String editUser(@PathVariable String ssoId, ModelMap model, Locale locale) {
         User user = userService.findBySSO(ssoId);
         model.addAttribute("user", user);
         model.addAttribute("edit", true);
@@ -130,7 +130,7 @@ public class AppController {
      */
     @RequestMapping(value = { "/edit-user-{ssoId}" }, method = RequestMethod.POST)
     public String updateUser(@Valid User user, BindingResult result,
-                             ModelMap model, @PathVariable String ssoId) {
+                             ModelMap model, @PathVariable String ssoId, Locale locale) {
 
         if (result.hasErrors()) {
             return "registration";
@@ -156,7 +156,7 @@ public class AppController {
      * This method will delete an user by it's SSOID value.
      */
     @RequestMapping(value = { "/delete-user-{ssoId}" }, method = RequestMethod.GET)
-    public String deleteUser(@PathVariable String ssoId) {
+    public String deleteUser(@PathVariable String ssoId, Locale locale) {
         userService.deleteUserBySSO(ssoId);
         return "redirect:/list";
     }
@@ -174,7 +174,7 @@ public class AppController {
      * This method handles Access-Denied redirect.
      */
     @RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
-    public String accessDeniedPage(ModelMap model) {
+    public String accessDeniedPage(ModelMap model, Locale locale) {
         model.addAttribute("loggedinuser", getPrincipal());
         return "accessDenied";
     }
@@ -184,7 +184,7 @@ public class AppController {
      * If users is already logged-in and tries to goto login page again, will be redirected to list page.
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginPage() {
+    public String loginPage(Locale locale) {
         if (isCurrentAuthenticationAnonymous()) {
             return "login";
         } else {
@@ -197,7 +197,7 @@ public class AppController {
      * Toggle the handlers if you are RememberMe functionality is useless in your app.
      */
     @RequestMapping(value="/logout", method = RequestMethod.GET)
-    public String logoutPage (HttpServletRequest request, HttpServletResponse response){
+    public String logoutPage (HttpServletRequest request, HttpServletResponse response, Locale locale){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null){
             //new SecurityContextLogoutHandler().logout(request, response, auth);

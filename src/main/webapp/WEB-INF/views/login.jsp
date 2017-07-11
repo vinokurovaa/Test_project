@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -27,13 +28,14 @@
 									<p>You have been logged out successfully.</p>
 								</div>
 							</c:if>
+							<spring:message code="lable.language"/> : <a href="?locale=en"> <img src="${pageContext.request.contextPath}/img/en.png"/> </a> | <a href="?locale=de"><img src="${pageContext.request.contextPath}/img/de.png"></a>
 							<div class="input-group input-sm">
 								<label class="input-group-addon" for="username"><i class="fa fa-user"></i></label>
-								<input type="text" class="form-control" id="username" name="ssoId" placeholder="Enter Username" required>
+								<input type="text" class="form-control" id="username" name="ssoId" placeholder="<spring:message code="lable.enterUserName" />" required>
 							</div>
 							<div class="input-group input-sm">
 								<label class="input-group-addon" for="password"><i class="fa fa-lock"></i></label> 
-								<input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
+								<input type="password" class="form-control" id="password" name="password" placeholder="<spring:message code="lable.enterPassword" />" required>
 							</div>
 							<div class="input-group input-sm">
                               <div class="checkbox">
