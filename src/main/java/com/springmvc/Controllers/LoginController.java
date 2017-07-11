@@ -9,8 +9,8 @@ import java.util.Locale;
 
 @Controller
 public class LoginController {
-    @RequestMapping(value={ "/login"}, method = RequestMethod.GET)
+  /*  @RequestMapping(value={ "/login"}, method = RequestMethod.GET)
     public ModelAndView user(Locale locale){
         return new ModelAndView("login");
-    }
+    }*/
 }

@@ -20,7 +20,7 @@
     <spring:url value="/signIn" var="signIn"></spring:url>
 </head>
 <body>
-<nav class="navbar navbar-default navbar-inverse" role="navigation" >
+<nav class="navbar navbar-default navbar-inverse" userProfile="navigation" >
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-left">
@@ -32,9 +32,9 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href=""  role="button" data-toggle="modal" data-target="#signUpModal"> Sign up </a> </li>
+                <li><a href=""  userProfile="button" data-toggle="modal" data-target="#signUpModal"> Sign up </a> </li>
                 <!-- Modal -->
-                <div class="modal fade" id="signUpModal" role="dialog">
+                <div class="modal fade" id="signUpModal" userProfile="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content">
                            <form:form action="${signUp}" method="post" modelAttribute="newUser" >
@@ -73,8 +73,8 @@
                                     </div>
                                     <div class="col-md-7">
                                         <label for="userRole">Role</label>
-                                        <form:select path="userRole" items="${roles}" multiple="false" itemValue="id" itemLabel="role" class="form-control input-sm" />
-                                        <span class="help-block">Please select your role.</span>
+                                        <form:select path="userRole" items="${roles}" multiple="false" itemValue="id" itemLabel="userProfile" class="form-control input-sm" />
+                                        <span class="help-block">Please select your userProfile.</span>
                                     </div>
                                 </div>
                             </div>
@@ -100,7 +100,7 @@
                                         <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
                                     </div>
                                     or
-                                    <form:form class="form" role="form" method="post" action="${signIn}"  modelAttribute="user" accept-charset="UTF-8" id="login-nav">
+                                    <form:form class="form" userProfile="form" method="post" action="${signIn}"  modelAttribute="user" accept-charset="UTF-8" id="login-nav">
                                         <div class="form-group" id="email">
                                             <label class="sr-only" for="email">Email address</label>
                                             <input type="email" class="form-control" name="email" placeholder="Email address" required>

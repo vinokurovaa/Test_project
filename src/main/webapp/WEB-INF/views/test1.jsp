@@ -73,10 +73,10 @@
         <button class="btn btn-danger btn-mini" data-toggle="modal" data-target="#newuser">
             add user
         </button>
-    <div class="model fade" id="newuser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="model fade" id="newuser" tabindex="-1" userProfile="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form:form method="post" role="form" class="form-horizontal" id="registForm" action="${url}" commandName="user">
+                <form:form method="post" userProfile="form" class="form-horizontal" id="registForm" action="${url}" commandName="user">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">times</button>
                         <h4 class="modal-title" id="myModalLabel"> Modify user</h4>

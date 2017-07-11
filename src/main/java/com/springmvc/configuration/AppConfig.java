@@ -30,10 +30,6 @@ public class AppConfig extends WebMvcConfigurerAdapter{
     @Autowired
     RoleToRoleServiceConverter roleToRoleServiceConverter;
 
-
-    /**
-     * Configure ViewResolvers to deliver preferred views.
-     */
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
 
@@ -44,37 +40,22 @@ public class AppConfig extends WebMvcConfigurerAdapter{
         registry.viewResolver(viewResolver);
     }
 
-
-    /**
-     * Configure ResourceHandlers to serve static resources like CSS/ Javascript etc...
-     */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("/static/");
         registry.addResourceHandler("/img/**").addResourceLocations("/img/");
     }
 
-    /**
-     * Configure Converter to be used.
-     * In our example, we need a converter to convert string values[Role] to UserProfiles in newUser.jsp
-     */
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(roleToRoleServiceConverter);
     }
 
-
-    /**
-     * Configure MessageSource to lookup any validation/error message in internationalized property files
-     */
-
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-      //  messageSource.setBasename("messages");
         messageSource.setBasename("messages");
         messageSource.setDefaultEncoding("UTF-8");
-   //     messageSource.setBasename("/");
         return messageSource;
     }
 
@@ -82,7 +63,7 @@ public class AppConfig extends WebMvcConfigurerAdapter{
     public LocaleResolver localeResolver(){
         CookieLocaleResolver cookieLocaleResolver = new CookieLocaleResolver();
         cookieLocaleResolver.setDefaultLocale(new Locale("en"));
-        cookieLocaleResolver.setCookieName("TestAppLocalCookie");
+        cookieLocaleResolver.setCookieName("LocalCookie");
         cookieLocaleResolver.setCookieMaxAge(3600);
         return cookieLocaleResolver;
     }
@@ -92,28 +73,7 @@ public class AppConfig extends WebMvcConfigurerAdapter{
         interceptor.setParamName("locale");
         registry.addInterceptor(interceptor);
     }
-    /**Optional. It's only required when handling '.' in @PathVariables which otherwise ignore everything after last '.' in @PathVaidables argument.
-     * It's a known bug in Spring [https://jira.spring.io/browse/SPR-6164], still present in Spring 4.1.7.
-     * This is a workaround for this issue.
-     */
-    @Bean
-    public JavaMailSender getMailSender(){
-        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 
-        mailSender.setHost("smtp.gmail.com");
-        mailSender.setPort(587);
-        mailSender.setUsername("oooenglishlearn@gmail.com");
-        mailSender.setPassword("28081961");
-
-        Properties javaMailProperties = new Properties();
-        javaMailProperties.put("mail.transport.protocol", "smtp");
-        javaMailProperties.put("mail.smtp.auth", "true");
-        javaMailProperties.put("mail.smtp.starttls.enable", "true");
-        javaMailProperties.put("mail.debug", "true");
-
-        mailSender.setJavaMailProperties(javaMailProperties);
-        return mailSender;
-    }
 
     @Override
     public void configurePathMatch(PathMatchConfigurer matcher) {

@@ -1,6 +1,6 @@
 package com.springmvc.Security;
 
-import com.springmvc.model.Role;
+import com.springmvc.model.UserProfile;
 import com.springmvc.model.User;
 import com.springmvc.services.UserService;
 import org.apache.log4j.Logger;
@@ -23,6 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
     UserService userService;
+
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String sso) throws UsernameNotFoundException {
         User user = userService.findBySSO(sso);
@@ -38,9 +39,9 @@ public class CustomUserDetailsService implements UserDetailsService {
     private List<GrantedAuthority> getGrantedAuthorities(User user){
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
-        for(Role role : user.getUserRole()){
-            logger.info("Role = " + role);
-            authorities.add(new SimpleGrantedAuthority("ROLE_"+role.getRole()));
+        for(UserProfile userProfile : user.getUserProfiles()){
+            logger.info("UserProfile = " + userProfile);
+            authorities.add(new SimpleGrantedAuthority("ROLE_"+ userProfile.getType()));
         }
         logger.info("authorities = " +authorities);
         return authorities;

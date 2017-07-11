@@ -1,29 +1,29 @@
 package com.springmvc.services;
 
 
-import com.springmvc.dao.RoleDao;
-import com.springmvc.model.Role;
+import com.springmvc.dao.UserProfileDao;
+import com.springmvc.model.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-@Service("roleService")
+@Service("userProfileService")
 @Transactional
-public class RoleServiceImpl implements RoleService {
+public class UserProfileServiceImpl implements UserProfileService {
 
     @Autowired
-    RoleDao dao;
+    UserProfileDao dao;
 
-    public Role findById(int id) {
+    public UserProfile findById(int id) {
         return dao.findById(id);
     }
 
-    public Role findByRole(String role) {
+    public UserProfile findByRole(String role) {
         return dao.findByRole(role);
     }
 
-    public List<Role> findAll() {
+    public List<UserProfile> findAll() {
         return dao.findAll();
     }
 }

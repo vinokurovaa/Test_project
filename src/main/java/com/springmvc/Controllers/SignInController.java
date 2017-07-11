@@ -1,8 +1,8 @@
 package com.springmvc.Controllers;
 
-import com.springmvc.model.Role;
+import com.springmvc.model.UserProfile;
 import com.springmvc.model.User;
-import com.springmvc.services.RoleService;
+import com.springmvc.services.UserProfileService;
 import com.springmvc.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -26,11 +25,11 @@ import java.util.Map;
 @Controller
 @SessionAttributes("roles")
 public class SignInController {
-    @Autowired
+   /* @Autowired
     UserService userService;
 
     @Autowired
-    RoleService roleService;
+    UserProfileService userProfileService;
 
     @Autowired
     MessageSource messageSource;
@@ -65,7 +64,7 @@ public class SignInController {
         return authenticationTrustResolver.isAnonymous(authentication);
     }
     @ModelAttribute("roles")
-    public List<Role> initializeProfiles() {
-        return roleService.findAll();
-    }
+    public List<UserProfile> initializeProfiles() {
+        return userProfileService.findAll();
+    } */
 }

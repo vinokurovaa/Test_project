@@ -15,7 +15,7 @@ import java.util.Locale;
 
 @Controller
 public class SignUpController1 {
-
+/*
     @RequestMapping(value = { "/registuser"}, method = RequestMethod.GET)
     public ModelAndView newuser(Locale locale, ModelMap modelMap){
         User user = new User();
@@ -41,5 +41,5 @@ public class SignUpController1 {
             userName = principal.toString();
         }
         return userName;
-    }
+    }*/
 }
