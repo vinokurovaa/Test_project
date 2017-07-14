@@ -11,8 +11,19 @@
 		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" />
 	</head>
 
+	<nav class="navbar navbar-default navbar-fixed-top" userProfile="navigation" >
+		<div class="container-fluid">
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Page 1</a></li>
+					<li><a href="#">Page 3</a></li>
+					<li><a href="#">Page 3</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 	<body>
-		<div id="mainWrapper">
+	<div class="container">
 			<div class="login-container">
 				<div class="login-card">
 					<div class="login-form">
@@ -34,25 +45,24 @@
 								<input type="text" class="form-control" id="username" name="ssoId" placeholder="<spring:message code="lable.enterUserName" />" required>
 							</div>
 							<div class="input-group input-sm">
-								<label class="input-group-addon" for="password"><i class="fa fa-lock"></i></label> 
+								<label class="input-group-addon" for="password"><i class="fa fa-lock"></i></label>
 								<input type="password" class="form-control" id="password" name="password" placeholder="<spring:message code="lable.enterPassword" />" required>
 							</div>
 							<div class="input-group input-sm">
-                              <div class="checkbox">
-                                <label><input type="checkbox" id="rememberme" name="remember-me"> Remember Me</label>  
-                              </div>
-                            </div>
+								<div class="checkbox">
+									<label><input type="checkbox" id="rememberme" name="remember-me"> Remember Me</label>
+								</div>
+							</div>
 							<input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
-								
+
 							<div class="form-actions">
 								<input type="submit"
-									class="btn btn-block btn-primary btn-default" value="Log in">
+									   class="btn btn-block btn-primary btn-default" value="Log in">
 							</div>
 						</form>
 					</div>
 				</div>
 			</div>
-		</div>
-
+	</div>
 	</body>
 </html>
