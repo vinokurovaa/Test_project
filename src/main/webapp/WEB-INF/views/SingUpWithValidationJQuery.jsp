@@ -25,6 +25,7 @@
                     <label for="email" class="block"><small>(mickey@mou.se)</small>:</label>
                     <input type="text" name="email" id="email"/>
                 </p>
+                <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
             </fieldset>
             <p>
                 <button type="submit" id="send">submit</button>
