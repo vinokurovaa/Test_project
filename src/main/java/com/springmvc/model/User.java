@@ -7,9 +7,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by Asus on 14.06.2017.
- */
+
 @Entity
 @Table(name="APP_USER")
 public class User implements Serializable {
